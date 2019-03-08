@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_blog.wsgi.application'
+WSGI_APPLICATION = 'PP_blog.wsgi.application'
 
 
 # Database

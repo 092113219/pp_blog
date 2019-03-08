@@ -84,7 +84,7 @@ class CommonViewMixin:
 
 class IndexView(CommonViewMixin, ListView):
     queryset = Post.latest_posts()
-    paginate_by = 5
+    paginate_by = 2
     context_object_name = 'post_list'
     template_name = 'blog/list.html'
 
@@ -102,8 +102,8 @@ class CategoryView(IndexView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        category_id = self.kwargs.get('cotegory_id')
-        return queryset.filter(category_id=category_id)
+        category_id = self.kwargs.get('category_id')
+        return queryset.filter(category__id=category_id)
 
 class TagView(IndexView):
 
@@ -119,7 +119,7 @@ class TagView(IndexView):
     def get_queryset(self):
         queryset = super().get_queryset()
         tag_id = self.kwargs.get('tag_id')
-        return queryset.filter(tag_id=tag_id)
+        return queryset.filter(tag__id=tag_id)
 
 
 class PostDetailView(CommonViewMixin, DetailView):
