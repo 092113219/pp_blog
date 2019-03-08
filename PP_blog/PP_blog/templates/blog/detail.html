@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+</head>
+<body>
+<!--{% extends './base.html' %}-->
+<!--&lt;!&ndash;<h1>detail</h1>&ndash;&gt;-->
+    <!--&lt;!&ndash;{{ name }}}&ndash;&gt;-->
+    <!--{% block title %} {{ post.title }}{% endblock %}-->
+
+<!--{% block main%}-->
+    <!--{% if post %}-->
+    <!--<h1>{{ post.title }}</h1>-->
+    <!--<div>-->
+        <!--<span>分类： {{ post.category.name }}</span>-->
+        <!--<span>作者： {{ post.owner.username }}</span>-->
+    <!--</div>-->
+    <!--<hr>-->
+    <!--<p>-->
+        <!--{{ post.content }}-->
+    <!--</p>-->
+    <!--{% endif %}-->
+<!--{% endblock %}-->
+
+    {{ post.title }}
+    {% if post %}
+    <h1>{{ post.title }}</h1>
+    <div>
+        <span>分类： {{ post.category.name }}</span>
+        <span>作者： {{ post.owner.username }}</span>
+    </div>
+    <hr>
+    <p>
+        {{ post.content }}
+    </p>
+    {% endif %}
+</body>
+</html>
