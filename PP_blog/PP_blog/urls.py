@@ -30,7 +30,8 @@ from config.views import links
 #     url(r'^super_admin/', admin.site.urls, name='super-admin'),
 #     url(r'^admin/', custome_site.urls, name='admin'),
 # ]
-from blog.views import IndexView, CategoryView, TagView, PostDetailView
+from blog.views import IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView,test
+from config.views import LinkView
 from .custom_site import custome_site
 
 urlpatterns = [
@@ -38,7 +39,10 @@ urlpatterns = [
     url(r'^category/(?P<category_id>\d+)/$', CategoryView.as_view(), name='category-list'),
     url(r'^tag/(?P<tag_id>\d+)/$', TagView.as_view(), name='tag-list'),
     url(r'^post/(?P<post_id>\d+).html$', PostDetailView.as_view(), name='post-detail'),
-    url(r'^links/$', links, name='links'),
     url(r'^super_admin/', admin.site.urls, name='super-admin'),
     url(r'^admin/', custome_site.urls, name='admin'),
+    url(r'^test/', test),
+    url(r'^search/', SearchView.as_view(), name='search'),
+    url(r'^author/(?P<owner_id>\d+)', AuthorView.as_view(), name='author'),
+    url(r'^links/$', LinkView.as_view(), name='links'),
 ]

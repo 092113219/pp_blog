@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', # 提供静态资源的服务功能 开发时候有用， 限制于DEBUG=True
 ]
 
 MIDDLEWARE = [
@@ -55,10 +55,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'PP_blog.urls'
 
+
+# 配置模板搜索目录
+THEME = 'bootstrap'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'themes', THEME, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

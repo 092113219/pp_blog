@@ -85,8 +85,8 @@ class CommonViewMixin:
 class IndexView(CommonViewMixin, ListView):
     queryset = Post.latest_posts()
     paginate_by = 2
-    context_object_name = 'post_list'
-    template_name = 'blog/list.html'
+    context_object_name = 'post_list' # 模板中参数名称
+    template_name = 'blog/list.html' # 渲染数据的模板
 
 from django.shortcuts import get_object_or_404
 
@@ -103,7 +103,7 @@ class CategoryView(IndexView):
     def get_queryset(self):
         queryset = super().get_queryset()
         category_id = self.kwargs.get('category_id')
-        return queryset.filter(category__id=category_id)
+        return queryset.filter(category_id=category_id)
 
 class TagView(IndexView):
 
@@ -119,12 +119,39 @@ class TagView(IndexView):
     def get_queryset(self):
         queryset = super().get_queryset()
         tag_id = self.kwargs.get('tag_id')
+        # print(queryset)
+        # print(tag_id)
+        # print(queryset.filter(tag__id=tag_id))
         return queryset.filter(tag__id=tag_id)
-
 
 class PostDetailView(CommonViewMixin, DetailView):
     queryset = Post.latest_posts()
     template_name = 'blog/detail.html'
     context_object_name = 'post'
     pk_url_kwarg = 'post_id'
+
+from django.db.models import Q
+class SearchView(IndexView):
+    def get_context_data(self):
+        context = super().get_context_data()
+        context.update({
+            'keyword': self.request.GET.get('keyword', '')
+        })
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        keyword = self.request.GET.get('keyword')
+        if not keyword:
+            return queryset
+        return queryset.filter(Q(title__icontains=keyword) | Q(desc__icontains=keyword))
+
+class AuthorView(IndexView):
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        author_id = self.kwargs.get('owner_id')
+        return queryset.filter(owner_id=author_id)
+
+def test(request):
+    return render(request, 'test.html')
 
