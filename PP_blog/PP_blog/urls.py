@@ -35,6 +35,10 @@ from config.views import LinkView
 from .custom_site import custome_site
 from comment.views import CommentView
 
+from django.contrib.sitemaps import views as sitemap_views
+from blog.rss import LatestPostFeed
+from blog.sitemap import PostSitemap
+from django.views.decorators.cache import cache_page
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
     url(r'^category/(?P<category_id>\d+)/$', CategoryView.as_view(), name='category-list'),
@@ -47,4 +51,6 @@ urlpatterns = [
     url(r'^author/(?P<owner_id>\d+)', AuthorView.as_view(), name='author'),
     url(r'^links/$', LinkView.as_view(), name='links'),
     url(r'^comment/$', CommentView.as_view(), name='comment'),
+    url(r'^rss|feed/', LatestPostFeed(), name='rss'),
+    url(r'^sitemap\.xml$', cache_page(60 * 20, key_prefix='sitemap_cache_')(sitemap_views.sitemap), {'sitemaps': {'posts': PostSitemap}}),
 ]

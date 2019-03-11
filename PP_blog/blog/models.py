@@ -39,7 +39,7 @@ class Category(models.Model):
             else:
                 normal_categories.append(cate)
         return {
-            'nava': nav_categories,
+            'navs': nav_categories,
             'categories': normal_categories,
         }
 class Tag(models.Model):
@@ -126,3 +126,9 @@ class Post(models.Model):
         import mistune
         self.content_html = mistune.markdown(self.content)
         super().save(*args, **kwargs)
+
+    # from django.utils.functional import cached_property
+    #
+    # @cached_property
+    # def tags(self):
+    #     return '.'.join(self.tag.values_list('name', flat=True))
