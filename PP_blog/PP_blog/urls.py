@@ -33,6 +33,7 @@ from config.views import links
 from blog.views import IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView,test
 from config.views import LinkView
 from .custom_site import custome_site
+from comment.views import CommentView
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
@@ -45,4 +46,5 @@ urlpatterns = [
     url(r'^search/', SearchView.as_view(), name='search'),
     url(r'^author/(?P<owner_id>\d+)', AuthorView.as_view(), name='author'),
     url(r'^links/$', LinkView.as_view(), name='links'),
+    url(r'^comment/$', CommentView.as_view(), name='comment'),
 ]

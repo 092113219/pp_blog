@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>sidebar_comments</title>
 </head>
 <body>
-    <ul>
-        {% for post in posts %}
-        <li>
-            <a href="/post/{{ post.id }}.html">{{ post.title }}</a>
-        </li>
+     <ul>
+        {% for comment in comments %}
+{#        <li><a href="/post/{{ comment.target_id }}.html">{{ comment.target.title }}</a></li> |#}
+{#        {{ comment.nickname}} : {{ comment.content}}#}
+            <li><a href="{{ comment.target }}">{{ comment.target.title }}</a>
+                | {{ comment.nickname }} :
+                    {% autoescape off %}
+                    {{ comment.content }}
+                    {% endautoescape %}
+            </li>
         {% endfor %}
     </ul>
 </body>
