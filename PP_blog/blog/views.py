@@ -86,7 +86,7 @@ class CommonViewMixin:
 
 class IndexView(CommonViewMixin, ListView):
     queryset = Post.latest_posts()
-    paginate_by = 2
+    paginate_by = 8
     context_object_name = 'post_list' # 模板中参数名称
     template_name = 'blog/list.html' # 渲染数据的模板
 
@@ -188,7 +188,7 @@ class SearchView(IndexView):
         keyword = self.request.GET.get('keyword')
         if not keyword:
             return queryset
-        return queryset.filter(Q(title__icontains=keyword) | Q(desc__icontains=keyword))
+        return queryset.filter(Q(title__icontains=keyword) | Q(desc__icontains=keyword) | Q(tag__icontains=keyword))
 
 class AuthorView(IndexView):
     def get_queryset(self):

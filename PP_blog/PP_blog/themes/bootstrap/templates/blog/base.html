@@ -1,14 +1,14 @@
-{% load static %}
 <!DOCTYPE HTML>
 <html lang="en">
-  <head>
+<head>
+    {% load static %}
     <meta charset="utf-8">
-    <title>{% block title %}首页{% endblock %}- typeidea博客系统</title>
+    <title>{% block title %}首页{% endblock %}- faple博客系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-{#    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">#}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 {#    <link rel="stylesheet" href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css">#}
         <!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+{#<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">#}
       {% block extra_head %}
     {% endblock %}
     <style>
@@ -24,20 +24,23 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             {% for cate in navs %}
+{#                {% if not forloop.counter|divisibleby:3 %}#}
+{#                    <br>#}
+{#                {% endif %}#}
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'category-list' cate.id %}">{{ cate.name }}</a>
               </li>
             {% endfor %}
             </ul>
             <form class="form-inline" action='/search/' method='GET'>
-                <input class="form-control" type="search" name="keyword" placeholder="Search" aria-label="Search" value="{{ keyword }}">
+                <input class="form-control" type="search" name="keyword" placeholder="Search by title or tag" aria-label="Search" value="{{ keyword }}">
               <button class="btn btn-outline-success" type="submit">搜索</button>
             </form>
           </div>
         </nav>
-        <div class="jumbotron">
-            <h1 class="display-4">Typeidea</h1>
-            <p class="lead">基于Django的多人博客系统</p>
+        <div class="jumbotron" style="background: #90877e url({% static 'img/bg.jpg' %}) no-repeat right ; background-size: contain; ">
+            <h1 class="display-4">faple, 嘟嘟嘟。。。</h1>
+            <p class="lead" style="font-family: 黑体">小宝哥哥</p>
         </div>
 	</div>
 	<div class="container main">
@@ -48,6 +51,17 @@
             </div>
             <div class="col-3">
                 {% block sidebar %}
+                    <div class="card sidebar">
+                        <div class="card-body">
+                            <h4 class="card-title">关于博主</h4>
+                            <p style="font-family: 华文仿宋">
+                                淡泊明志<br>
+                                宁静致远<br>
+                                自强不息<br>
+                                厚德载物<br>
+                            </p>
+                        </div>
+                    </div>
                     {% for sidebar in sidebars %}
                     <div class="card sidebar">
                         <div class="card-body">
@@ -74,7 +88,7 @@
             </nav>
         </div>
         <div class="container power">
-            <span class="text-muted">Power by Typeidea@the5fire</span>
+            <span class="text-muted">Designed By Faple</span>
         </div>
         {% endblock %}
     </footer>
