@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+PP_blog/manage.py
+PP_blog/PP_blog/wsgi.py
+PP_blog/PP_blog/wsgi.py
+blog/blog.egg-info/PKG-INFO
+blog/blog.egg-info/SOURCES.txt
+blog/blog.egg-info/dependency_links.txt
+blog/blog.egg-info/entry_points.txt
+blog/blog.egg-info/requires.txt
+blog/blog.egg-info/top_level.txt

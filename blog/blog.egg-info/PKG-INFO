@@ -1,0 +1,14 @@
+Metadata-Version: 1.1
+Name: blog
+Version: 0.0.1
+Summary: Blog System base on Django
+Home-page: https://www.faple.cn
+Author: faple
+Author-email: 2499524102@qq.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Blog :: Django Blog
+Classifier: License :: OSI Approved :: MIT License
